@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Flask Blog</title>
+  <title>{{params['blog-name']}}</title>
 
   <!-- Bootstrap core CSS -->
   <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -28,7 +28,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-      <a class="navbar-brand" href="/">{{params['blog_name']}}</a>
+      <a class="navbar-brand" href="/">{{params['blog-name']}}</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i class="fas fa-bars"></i>
@@ -87,7 +87,7 @@
             </a>
           </li>
         </ul>
-        <p class="copyright text-muted">Copyright &copy; {{params['blog_name']}}</p>
+        <p class="copyright text-muted">Copyright &copy; {{params['blog-name']}}</p>
       </div>
     </div>
   </div>
