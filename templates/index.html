@@ -28,9 +28,11 @@
               {{post.title}}
             </h2>
             <h3 class="post-subtitle">
-              {{post.content[0:30]}}.....
+              {{post.sub_heading}}
             </h3>
           </a>
+          {{post.content[0:100]}}.....
+          <p></p>
           <p class="post-meta">Posted by
             <a href="/">Admin</a>
             on {{post.date}}</p>

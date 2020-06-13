@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session
+from flask import Flask, render_template, request, session, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_mail import Mail
@@ -37,6 +37,7 @@ class Contacts(db.Model):
 class Posts(db.Model):
     sno = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(50), nullable=False)
+    sub_heading = db.Column(db.String(50), nullable=False)
     slug = db.Column(db.String(20), nullable=False)
     content = db.Column(db.String(120), nullable=False)
     date = db.Column(db.String(20), nullable=True)
@@ -64,6 +65,34 @@ def dashboard():
             posts = Posts.query.all()
             return render_template('dashboard.html', params=params, posts=posts)
     return render_template('login.html', params=params)
+
+@app.route("/edit/<string:sno>", methods=['GET', 'POST'])
+def edit(sno):
+    if('user' in session and session['user']==params['admin_user']):
+        if(request.method=="POST"):
+            new_title = request.form.get('title')
+            new_sub_heading = request.form.get('sub_heading')
+            new_slug = request.form.get('slug')
+            new_content = request.form.get('content')
+            date = datetime.now()
+            if(sno=='0'):
+                add_post = Posts(title=new_title, sub_heading=new_sub_heading, slug=new_slug, content=new_content, date=date)
+                db.session.add(add_post)
+                db.session.commit()
+                return redirect('/edit/'+sno)
+            else:
+                post = Posts.query.filter_by(sno=sno).first()
+                post.title = new_title
+                post.sub_heading = new_sub_heading
+                post.slug = new_slug
+                post.content = new_content
+                post.date = date
+                db.session.commit()
+                return redirect('/edit/'+sno)
+    post = Posts.query.filter_by(sno=sno).first()
+    return render_template('edit.html', params=params, post=post, sno=sno)
+
+
 
 @app.route("/contact", methods=['GET', 'POST'])
 def contact():

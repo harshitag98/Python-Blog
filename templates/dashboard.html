@@ -21,6 +21,12 @@
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
 
+        <h1>Basic Actions</h1><br>
+        <a href="/edit/0"> <button type="button" class="btn btn-primary">Add Post</button> </a>
+        <a href="logout"> <button type="button" class="btn btn-primary">LogOut</button> </a>
+        <p></p>
+        <hr>
+        <h1>Your Posts</h1><br>
         <table class="table">
           <thead>
             <tr>
@@ -38,8 +44,8 @@
               <td>{{post.sno}}</td>
               <td>{{post.title}}</td>
               <td>{{post.date}}</td>
-              <td> <button type="button" class="btn btn-info">Edit</button> </td>
-              <td> <button type="button" class="btn btn-danger">Delete</button> </td>
+              <td> <a href="/edit/{{post.sno}}"> <button type="button" class="btn btn-info">Edit</button> </a></td>
+              <td> <a href="#"></a> <button type="button" class="btn btn-danger">Delete</button> </a></td>
             </tr>
 
         {% endfor %}
