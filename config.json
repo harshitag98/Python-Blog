@@ -1,0 +1,16 @@
+{
+  "params":
+  {
+    "local_server" : "True",
+    "local_uri" : "mysql://root:@localhost/flask_blog",
+    "prod_uri" : "mysql://root:@localhost/flask_blog",
+    "fb_url" : "https://www.facebook.com/",
+    "twitter_url" : "https://twitter.com/",
+    "gh_url" : "https://github.com/",
+    "blog-name" : "Flask Blog",
+    "tagline" : "Everything about Flask !!",
+    "mail_user" : "your_email@gmail.com",
+    "mail_pass" : "password",
+    "no_of_posts" : 4
+  }
+}
