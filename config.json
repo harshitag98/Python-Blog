@@ -11,6 +11,8 @@
     "tagline" : "Everything about Flask !!",
     "mail_user" : "your_email@gmail.com",
     "mail_pass" : "password",
-    "no_of_posts" : 4
+    "no_of_posts" : 4,
+    "admin_user" : "adminuser",
+    "admin_pass" : "helloworld"
   }
 }
