@@ -66,6 +66,20 @@ def dashboard():
             return render_template('dashboard.html', params=params, posts=posts)
     return render_template('login.html', params=params)
 
+@app.route("/delete/<string:sno>", methods=['GET', 'POST'])
+def delete(sno):
+    if('user' in session and session['user']==params['admin_user']):
+        post = Posts.query.filter_by(sno=sno).first()
+        db.session.delete(post)
+        db.session.commit()
+    return redirect('/dashboard')
+
+@app.route("/logout")
+def logout():
+    if('user' in session and session['user']==params['admin_user']):
+        session.pop('user')
+        return redirect('/dashboard')
+
 @app.route("/edit/<string:sno>", methods=['GET', 'POST'])
 def edit(sno):
     if('user' in session and session['user']==params['admin_user']):
