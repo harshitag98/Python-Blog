@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, redirect
+from flask import Flask, render_template, request, session, redirect, flash
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from flask_mail import Mail
@@ -134,11 +134,12 @@ def contact():
         entry = Contacts(name=name, email=email, phone_num=phone, message=msg, date=datetime.now())
         db.session.add(entry)
         db.session.commit()
-        mail.send_message("New message from "+name ,
-                          sender = email,
-                          recipients = [params['mail_user']],
-                          body = msg + "\n" + phone
-                          )
+        # mail.send_message("New message from "+name ,
+        #                   sender = email,
+        #                   recipients = [params['mail_user']],
+        #                   body = msg + "\n" + phone
+        #                   )
+        flash("Thanks for contacting us. We will get back to you soon !!", "success")
     return render_template('contact.html', params=params)
 
 @app.route("/post/<string:post_slug>", methods=['GET'])
